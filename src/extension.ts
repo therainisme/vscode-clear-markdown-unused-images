@@ -32,6 +32,11 @@ export function activate(context: vscode.ExtensionContext) {
 			const imagePaths = text.match(/!\[.*\]\((.*)\)/g);
 			if (imagePaths) {
 				imagePaths.forEach(imageRawPath => {
+					// filter network images
+					if (imageRawPath.startsWith("http")) {
+						return;
+					}
+
 					let imagePath = imageRawPath.match(/!\[.*\]\((.*)\)/)![1];
 					imagePath = path.join(markdown.fsPath, "../", imagePath);
 					imagesMap[imagePath] = true;
