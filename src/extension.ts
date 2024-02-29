@@ -19,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
 		// The code you place here will be executed every time your command is executed
 		vscode.window.showInformationMessage('Searching for unused images in markdown files...');
 
-		const images = await vscode.workspace.findFiles('**/*.png');
+		const images = await vscode.workspace.findFiles('**/*.{png,jpg,jpeg,gif,bmp,tiff,webp,svg}');
 		const imagesMap = images.reduce((acc, image) => {
 			acc[image.fsPath] = false;
 			return acc;
