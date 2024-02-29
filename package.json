@@ -2,13 +2,23 @@
   "name": "clear-markdown-unused-images",
   "displayName": "Clear Markdown Unused Images",
   "description": "This extension moves unused images in Markdown files to the 'unused-images' folder.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.85.2"
   },
   "categories": [
     "Other"
   ],
+  "publisher": "therainisme",
+  "author": "therainisme <therainisme@550w.host>",
+	"homepage": "https://github.com/therainisme/vscode-clear-markdown-unused-images#readme",
+	"bugs": {
+		"url": "https://github.com/therainisme/vscode-clear-markdown-unused-images/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/therainisme/vscode-clear-markdown-unused-images"
+	},
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
