@@ -19,12 +19,13 @@
 		"type": "git",
 		"url": "https://github.com/therainisme/vscode-clear-markdown-unused-images"
 	},
+  "icon": "assets/clear-markdown-unused-images.png",
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "clear-markdown-unused-images.clear",
+        "command": "clear-markdown-unused-images.run",
         "title": "Clear Markdown Unused Images: Run"
       }
     ]
