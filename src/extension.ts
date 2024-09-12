@@ -38,7 +38,12 @@ export function activate(context: vscode.ExtensionContext) {
 					}
 
 					let imagePath = imageRawPath.match(/!\[.*\]\((.*)\)/)![1];
-					imagePath = path.join(markdown.fsPath, "../", imagePath);
+					if (imagePath.startsWith("/")) {
+						const workspaceRootPath = vscode.workspace.workspaceFolders![0].uri.fsPath;
+						imagePath = path.join(workspaceRootPath, imagePath);
+					} else {
+						imagePath = path.join(path.dirname(markdown.fsPath), imagePath);
+					}
 					imagesMap[imagePath] = true;
 				});
 			}
