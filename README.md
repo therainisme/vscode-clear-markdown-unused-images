@@ -1,6 +1,6 @@
 # Clear Markdown Unused Images
 
-[![isualStudioMarketplace](https://img.shields.io/badge/VisualStudioMarketplace-v1.0.2-green.svg)](https://marketplace.visualstudio.com/items?itemName=therainisme.clear-markdown-unused-images)
+[![isualStudioMarketplace](https://img.shields.io/badge/VisualStudioMarketplace-v1.0.3-green.svg)](https://marketplace.visualstudio.com/items?itemName=therainisme.clear-markdown-unused-images)
 
 This extension moves unused images in Markdown files to the 'unused-images' folder.
 
