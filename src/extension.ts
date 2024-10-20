@@ -58,10 +58,18 @@ export function activate(context: vscode.ExtensionContext) {
 		if (!fs.existsSync(unusedImagesDir)) {
 			fs.mkdirSync(unusedImagesDir);
 		}
+		
 		for (const unusedImage of unusedImages) {
-			const unusedImageName = path.basename(unusedImage);
-			fs.renameSync(unusedImage, path.join(unusedImagesDir, unusedImageName));
-			console.log(`Moved ${unusedImage} to ${unusedImagesDir}`);
+			const relativeImagePath = path.relative(workspaceRootpath, unusedImage);
+			const targetPath = path.join(unusedImagesDir, relativeImagePath);
+
+			const targetDir = path.dirname(targetPath);
+			if (!fs.existsSync(targetDir)) {
+				fs.mkdirSync(targetDir, { recursive: true });
+			}
+
+			fs.renameSync(unusedImage, targetPath);
+			console.log(`Moved ${unusedImage} to ${targetPath}`);
 		}
 
 		vscode.window.showInformationMessage(`Moved ${unusedImages.length} unused images to ${unusedImagesDir}`);
