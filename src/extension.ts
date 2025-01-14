@@ -23,7 +23,10 @@ export function activate(context: vscode.ExtensionContext) {
 				try {
 					// Step 1: Find all image files in the workspace
 					progress.report({ message: 'Finding image files...', increment: 5 });
-					const images = await vscode.workspace.findFiles('**/*.{png,jpg,jpeg,gif,bmp,tiff,webp,svg}');
+					const images = await vscode.workspace.findFiles(
+						'**/*.{png,jpg,jpeg,gif,bmp,tiff,webp,svg}',
+						'{**/unused-images/**,**/node_modules/**}' // Exclude unused-images and node_modules directories
+					);
 					const imagePathsSet = new Set<string>(images.map(image => path.normalize(image.fsPath)));
 					const totalImages = imagePathsSet.size;
 

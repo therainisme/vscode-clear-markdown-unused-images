@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.1.1
+
+- Fix regex to handle filenames with spaces correctly (#6)
+- Exclude 'unused-images' and 'node_modules' directories during file search (#7)
+
 ## 1.1.0
 
 - Implement concurrent markdown scanning and parallel image movement.
