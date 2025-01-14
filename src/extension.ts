@@ -43,7 +43,8 @@ export function activate(context: vscode.ExtensionContext) {
 					console.log(`Setting MOVE_CONCURRENCY to ${MOVE_CONCURRENCY}`);
 
 					// Regex to match Markdown image syntax with optional comma and title
-					const imageRegex = /!\[.*?\]\(([^)\s",]+)(?:\s*,?\s*["'][^"']*["'])?\)/g;
+					// Match both normal paths and paths with spaces (in angle brackets)
+					const imageRegex = /!\[.*?\]\((?:<([^>]+)>|([^)\s",]+))(?:\s*,?\s*["'][^"']*["'])?\)/g;
 
 					// Step 3: Process each Markdown file with controlled concurrency
 					progress.report({ message: 'Processing Markdown files...', increment: 15 });
@@ -189,7 +190,8 @@ async function processSingleMarkdown(
 		let match: RegExpExecArray | null;
 
 		while ((match = regex.exec(text)) !== null) {
-			let imagePath = match[1];
+			// match[1] is for paths with angle brackets, match[2] is for normal paths
+			let imagePath = match[1] || match[2];
 
 			// Ignore network images
 			if (/^(http|https):\/\//.test(imagePath)) {
