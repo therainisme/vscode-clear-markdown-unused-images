@@ -21,11 +21,15 @@ export function activate(context: vscode.ExtensionContext) {
 				progress.report({ message: 'Initializing...', increment: 0 });
 
 				try {
-					// Step 1: Find all image files in the workspace
+					// Step 1: Find all image files in the workspace, respecting user-defined exclude settings
 					progress.report({ message: 'Finding image files...', increment: 5 });
+					const configuration = vscode.workspace.getConfiguration('clear-markdown-unused-images');
+					const excludeFolders = configuration.get<string[]>('excludeFolders', []);
+					const excludePattern = `{${excludeFolders.join(',')}}`;
+
 					const images = await vscode.workspace.findFiles(
 						'**/*.{png,jpg,jpeg,gif,bmp,tiff,webp,svg}',
-						'{**/unused-images/**,**/node_modules/**}' // Exclude unused-images and node_modules directories
+						excludePattern
 					);
 					const imagePathsSet = new Set<string>(images.map(image => path.normalize(image.fsPath)));
 					const totalImages = imagePathsSet.size;

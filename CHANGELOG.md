@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.1.2
+
+- Add a new configuration `clear-markdown-unused-images.excludeFolders` to allow users to configure excluded folders.
+
 ## 1.1.1
 
 - Fix regex to handle filenames with spaces correctly (#6)
